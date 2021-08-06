@@ -40,7 +40,7 @@ I was looking for a good API for *geocoding* as alternative to the vast *Google 
 ### HERE API usage (geocode)
 * Create an account on *HERE*'s [developer portal](https://developer.here.com/)
 * Create an API key
-* Use the API key for the endpoint call
+* Use the API key for the endpoint call. I personally use *[Axios](https://yarnpkg.com/package/axios)* for the HTTPS call, so ensure to install it before with the following command: `yarn add axios`
 
 ### API key security concerns
 You should never save your API keys in the code.
@@ -53,6 +53,22 @@ Just for testing locally the app, you *could*:
 - add a temporary environment variable in the shell
 
 Anyway, **never** build and publish a React application that has API keys in the code, because the environment variables are embedded in the build.
+
+## Troubleshooting
+You could face an error with `npm` or `yarn` regarding `leaflet` modules.
+
+In that case, follow the steps described in [this](https://stackoverflow.com/questions/67552020/how-to-fix-error-failed-to-compile-node-modules-react-leaflet-core-esm-pat) StackOverflow thread:
+* in `package.json` change the `browserslist` to:
+```
+"browserslist": [
+   ">0.2%",
+  "not dead",
+  "not op_mini all"
+]
+```
+* then delete the `node_modules/.cache/` directory (if necessary using the shell `rm -rf node_modules/.cache/`)
+* retry to do `yarn` for installing (or `npm install`)
+* finally restart `yarn start` (or `npm start`)
 
 ***
 
