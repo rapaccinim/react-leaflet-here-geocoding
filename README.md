@@ -10,7 +10,24 @@ From the [official documentation](https://react-leaflet.js.org/docs/start-introd
 I personally think that *Leaflet* is a valid alternative to *Google Maps API* - although Google has the best mapping features *all-in-one* - so the React abstraction of *Leaflet* is a good set of components to consider.
 
 ### React Leaflet installation
-TBD
+Install `react`, `react-dom` and `leaflet` dependencies (if not already present):
+```
+yarn add react react-dom leaflet
+```
+Then install `react-leaflet`:
+```
+yarn add react-leaflet
+```
+If you are using TypeScript - like me in this repo - you have to add the TS definitions:
+```
+yarn add -D @types/leaflet
+```
+
+### React Leaflet usage
+Once installed, you can use the `react-leaflet` components importing them. E.g.:
+```
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+```
 
 ## HERE API
 I was looking for a good API for *geocoding* as alternative to the vast *Google Maps API*:
@@ -20,8 +37,31 @@ I was looking for a good API for *geocoding* as alternative to the vast *Google 
 *HERE*'s claim from the official website is quite self-describing:
 > High precision data, advanced tooling and 35 years expertise for a safer, more efficient and cleaner world
 
-### HERE API installation
-TBD
+### HERE API usage (geocode)
+* Create an account on *HERE*'s [developer portal](https://developer.here.com/)
+* Create an API key
+* Use the API key for the endpoint call
+
+### API key security concerns
+You should never save your API keys in the code.
+
+`create-react-app` [documentation](https://create-react-app.dev/docs/adding-custom-environment-variables/) is quite clear about this:
+> WARNING: Do not store any secrets (such as private API keys) in your React app! Environment variables are embedded into the build, meaning anyone can view them by inspecting your app's files.
+
+Just for testing locally the app, you *could*:
+- add the API Key in a `.env` file (after adding `.env` in the `.gitignore`), then removing after testing
+- add a temporary environment variable in the shell
+
+Anyway, **never** build and publish a React application that has API keys in the code, because the environment variables are embedded in the build.
+
+***
+
+## Why I'm using yarn
+I personally prefer `yarn` as package manager mainly for better security reasons.
+
+But I'll give you a [good read](https://www.section.io/engineering-education/npm-vs-yarn-which-one-to-choose/) where you can find analysis to help you to be choose your favourite between `yarn` and `npm`.
+
+P.S. as you can see from the following part of this `README.md`, the [good fellas behing React](https://reactjs.org/community/team.html) (aka a team of Facebook's devs) seem to prefer `yarn`. So...
 
 ***
 
